@@ -1,0 +1,36 @@
+#define MAX_MEMORY_SIZE 4095
+#define RESERVED_MEMORY_SIZE 0x200
+
+class Memory 
+{
+
+private:
+    unsigned char memory[MAX_MEMORY_SIZE];
+    Memory(){}                          // Default contructor
+    Memory(Memory const&);              // Copy 
+    void operator=(S Memory&);          // Don't implement
+public:
+    static Memory& getInstance()
+    {
+        static Memory instance; // Guaranteed to be destroyed.
+        return instance;
+    }
+
+    unsigned char getBlock(unsigned int address) 
+    {
+        if (address >= RESERVED_MEMORY_SIZE && address <= MAX_MEMORY_SIZE) 
+        {
+            return memory[address];
+        }
+        else
+        {
+         Logger::logPrint(std::cout, "get memmory in address " + address);
+        }
+  
+}
+unsigned char setBlock(unsigned int address)
+{
+
+}
+
+};
